@@ -1,0 +1,14 @@
+<div class="product-container">
+    <img class="product-image" src="{{ productInfo.url }}" />
+    <div class="product-info">
+        <b>{{ productInfo.name }}</b>
+        <b>${{ productInfo.price }}</b>
+        <select (ngModelChange)="selectedQuantity($event)">
+            <option *ngFor="let value of productQuantity" value="{{ value }}">
+            {{ value }}
+            </option>
+        </select>
+        <input type="submit" value="Add to Cart"/>
+    </div>
+    
+</div>

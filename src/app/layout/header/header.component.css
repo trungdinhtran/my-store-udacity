@@ -4,6 +4,27 @@
   color: #fff;
   padding: 12px;
 }
+.app-name {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.first-menu-item {
+  text-align: center;
+  padding: 0 10px;
+  margin-right: 5px;
+  text-decoration: none;
+  border-right: 1px solid #ffffff;
+}
+
+.second-menu-item {
+  text-align: center;
+  padding: 10px;
+  color: #ffffff;
+  text-decoration: none;
+}
 
 a {
   color: #ffffff;

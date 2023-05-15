@@ -15,7 +15,29 @@
   justify-content: flex-start;
 }
 
-.select-input {
-  width: 108px; 
+.product-info {
+  text-align: center;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+select {
+  width: 6rem;
+  padding: 6px;
+  border-radius: 5px;
+  margin: auto;
+  display: block;
   margin-bottom: 8px;
+  margin-top: 8px;
+}
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #0d6efd;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 15px;
 }
