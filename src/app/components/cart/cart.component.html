@@ -26,11 +26,11 @@
             </div>
         </div>
         <div class="cart-item">
-            <form class="form-group" [formGroup]="userForm" (ngSubmit)="confirmationOrder($event)">
+            <form class="form-group" [formGroup]="userForm" (ngSubmit)="confirmationOrder(fullName)">
                 <div>
-                    <label>FullName </label><br />
+                    <label>Full name </label><br />
                     <input type="text" formControlName="fullName" placeholder="(minimum 3 characters)" required [ngClass]="{'is-invalid': submitted && fullName?.touched && fullName?.errors}" />
-                    <div *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)" >
+                    <div class="alert-error" *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)" >
                         <div *ngIf="fullName?.errors?.['required']">
                             FullName is required.
                         </div>
@@ -43,7 +43,7 @@
                 <div>
                     <label>Address </label><br />
                     <input type="text" formControlName="address" placeholder="(minimum 6 characters)" [ngClass]="{'is-invalid': submitted && address?.touched && address?.errors}"/>
-                    <div *ngIf="address?.invalid && (address?.dirty || address?.touched)" >
+                    <div class="alert-error" *ngIf="address?.invalid && (address?.dirty || address?.touched)" >
                         <div *ngIf="address?.errors?.['required']">
                             Address is required.
                         </div>
@@ -56,7 +56,7 @@
                 <div>
                     <label>Credit card number </label><br />
                     <input type="text" formControlName="cardNumber" minlength="16" maxlength="16" placeholder="(16-digit number)" [ngClass]="{'is-invalid': submitted && cardNumber?.touched && cardNumber?.errors}" />
-                    <div *ngIf="cardNumber?.invalid && (cardNumber?.dirty || cardNumber?.touched)" >
+                    <div class="alert-error" *ngIf="cardNumber?.invalid && (cardNumber?.dirty || cardNumber?.touched)" >
                         <div *ngIf="cardNumber?.errors?.['required']">
                             Credit Card is number and has 16 digit.
                         </div>

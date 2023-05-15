@@ -80,9 +80,8 @@ export class CartComponent implements OnInit{
     return Number(value);
   }
   confirmationOrder(value: any){
-    // let userInfoConfirm = { "name": this.fullName, "tot?alCart": this.totalCart}
-    // this.storage.clear();
-    this.storage.setItem('fullName', JSON.stringify(value.fullName));
+    console.log(value.value, value)
+    this.storage.setItem('fullName', value.value);
     this.storage.setItem('totalCart', JSON.stringify(this.totalCart));
     this.router.navigate(['/confirmation'])
   }
