@@ -1,0 +1,87 @@
+<div *ngIf="productInCart.length; else emptyCart" class="cart">
+    <div class="cart-container">
+        <div class="cart-product-container">
+            <div *ngFor="let product of productInCart" class="cart-item">
+                <div class="cart-item-details">
+                    <img src="{{product.url}}">
+                </div>
+                <div class="cart-item-details">
+                    <a>{{product.name}}</a>
+                    <a>${{product.price}}</a>
+                    <div class="amount">
+                        <a>Amount: </a>
+                        <select #cart (change)="selectedQuantity(cart.value, product)">
+                            <option *ngFor="let value of productQuantity" [ngValue]="value" [selected]="product.total === convert(value)">
+                            {{ value }}
+                            </option>
+                        </select>
+                    </div>
+                    <button class="btn-delete" (click)="deleteProductInCart(product)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+            <div>
+                <h1>Total: ${{totalCart}}</h1>
+            </div>
+        </div>
+        <div class="cart-item">
+            <form class="form-group" [formGroup]="userForm" (ngSubmit)="confirmationOrder($event)">
+                <div>
+                    <label>FullName </label><br />
+                    <input type="text" formControlName="fullName" placeholder="(minimum 3 characters)" required [ngClass]="{'is-invalid': submitted && fullName?.touched && fullName?.errors}" />
+                    <div *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)" >
+                        <div *ngIf="fullName?.errors?.['required']">
+                            FullName is required.
+                        </div>
+                        <div *ngIf="fullName?.errors?.['minlength']">
+                            FullName must be at least 3 characters.
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <label>Address </label><br />
+                    <input type="text" formControlName="address" placeholder="(minimum 6 characters)" [ngClass]="{'is-invalid': submitted && address?.touched && address?.errors}"/>
+                    <div *ngIf="address?.invalid && (address?.dirty || address?.touched)" >
+                        <div *ngIf="address?.errors?.['required']">
+                            Address is required.
+                        </div>
+                        <div *ngIf="address?.errors?.['minlength']">
+                            Address must be at least 6 characters.
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <label>Credit card number </label><br />
+                    <input type="text" formControlName="cardNumber" minlength="16" maxlength="16" placeholder="(16-digit number)" [ngClass]="{'is-invalid': submitted && cardNumber?.touched && cardNumber?.errors}" />
+                    <div *ngIf="cardNumber?.invalid && (cardNumber?.dirty || cardNumber?.touched)" >
+                        <div *ngIf="cardNumber?.errors?.['required']">
+                            Credit Card is number and has 16 digit.
+                        </div>
+                        <div *ngIf="cardNumber?.errors?.['minLength']">
+                            Credit Card is number and has 16 digit.
+                        </div>
+                        <div *ngIf="cardNumber?.errors?.['maxLength']">
+                            Credit Card is number and has 16 digit.
+                        </div>
+                        <div *ngIf="cardNumber?.errors?.['pattern']">
+                            Credit Card is number and has 16 digit.
+                        </div>
+                    </div>
+                </div>
+        
+                <br />
+                <span class="message">We'll never share your payment details with anyone else.
+            </span>
+                <input type="submit" [disabled]="userForm.invalid" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+<ng-template #emptyCart>
+    <div class="empty-cart-message">
+        Your cart is empty!  <a routerLink="/"> Continue to shopping</a>.
+    </div>
+</ng-template>

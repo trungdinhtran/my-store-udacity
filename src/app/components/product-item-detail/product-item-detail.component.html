@@ -7,13 +7,15 @@
         <b>{{ productInfo.name }}</b>
         <h4>${{ productInfo.price }}</h4>
         <h4>{{ productInfo.description }}</h4>
-        <select (ngModelChange)="selectedQuantity($event)">
-            <option *ngFor="let value of productQuantity" value="{{ value }}">
-            {{ value }}
-            </option>
-        </select>
-        <input type="submit" value="Add to Cart"/>
-        <a routerLink="/">&lt; Back to product list</a>
+        <form (ngSubmit)="addProduct(productInfo)">
+            <select (ngModelChange)="selectedQuantity($event)" [(ngModel)]="selected" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let value of productQuantity" value="{{ value }}">
+                {{ value }}
+                </option>
+            </select>
+            <input type="submit" value="Add to Cart"/>
+            <a routerLink="/">&lt; Back to product list</a>
+        </form>
     </div>
 
 </div>

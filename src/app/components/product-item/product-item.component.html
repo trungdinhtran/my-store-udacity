@@ -3,12 +3,14 @@
     <div class="product-info">
         <b>{{ productInfo.name }}</b>
         <b>${{ productInfo.price }}</b>
-        <select (ngModelChange)="selectedQuantity($event)">
-            <option *ngFor="let value of productQuantity" value="{{ value }}">
-            {{ value }}
-            </option>
-        </select>
-        <input type="submit" value="Add to Cart"/>
+        <form (ngSubmit)="addProduct(productInfo)">
+            <select (ngModelChange)="selectedQuantity($event)" [(ngModel)]="selected" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let value of productQuantity" value="{{ value }}">
+                {{ value }}
+                </option>
+            </select>
+            <input type="submit" value="Add to Cart"/>
+        </form>
     </div>
     
 </div>

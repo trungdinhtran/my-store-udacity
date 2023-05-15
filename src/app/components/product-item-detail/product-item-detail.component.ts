@@ -14,11 +14,12 @@ export class ProductItemDetailComponent {
   productId: number = -1;
   productInfo!: Product;
   productQuantity: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-  selected:number = 1;
+  selected = 1
   
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
+    private router: Router
     ){}
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -31,11 +32,14 @@ export class ProductItemDetailComponent {
     });
   }
   getProductInfo(id: number) {
-    console.log("OK", this.productList, this.productId)
     return this.productList.filter((obj) => obj.id === id )[0];
   }
   selectedQuantity(value: any) {
     this.selected = value;
+    console.log(value, this.selected)
   }
-
+  addProduct(product: Product){
+    this.productService.storeProduct(product, Number(this.selected))
+    this.router.navigate(['/cart'])
+  }
 }
